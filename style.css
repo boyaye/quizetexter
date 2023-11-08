@@ -33,6 +33,7 @@ main{
     color: white;
     border-radius: 20px;
     font-weight: 50px;
+    display: none;
  
    
    
@@ -52,7 +53,7 @@ main{
 
 #questiondiv  {
     width: 40%;
-    height: 20em;
+    height: 30em;
     border: 0px solid gray;
     margin: auto;
     position: absolute;
@@ -65,7 +66,7 @@ main{
     justify-content: center;
     background-image: linear-gradient(to left, rgb(57, 57, 173),rgb(109, 49, 109),gray);
  border-radius: 20px;
- display: none;
+
 
 }
 
@@ -162,6 +163,7 @@ color: black;
     line-height: 2rem;
     color: white;
     display: none;
+
   
 }
 #displaypoint{
@@ -213,8 +215,8 @@ input{
 border-radius: 20px;
  align-items: center;
  background-image: linear-gradient(to right,rgb(80, 44, 80),rgb(78, 44, 44),gray);
-display: none;
-    
+
+    display: none;
 }
 
 #scoreinfo{

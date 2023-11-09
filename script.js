@@ -1,6 +1,6 @@
 var startgameDiv = document.querySelector("#startgameDIV");
 var startgamebtn = document.querySelector("#startgame");
-var highscorebtn = document.querySelector("#highscore");
+var highscorebtn = document.querySelector("#highscorecheck");
 var questionDiv = document.querySelector("#questiondiv");
 var timecount = document.querySelector("#timecount");
 var questionEl = document.querySelector("#questionmessage");
@@ -13,7 +13,7 @@ var answermessage = document.querySelector("#correct-answer")
 var enterinitialDiv = document.querySelector("#enterinitial")
 var displaypoint = document.querySelector("#displaypoint")
 var inputinitial = document.querySelector("#inputvalue")
-var savescoreBTN = document.querySelector("#savescore")
+var savescore = document.querySelector("#savescore")
 var displayinfoDIV = document.querySelector("#displayinfo")
 var scoreinitial = document.querySelector("#highscore-inital")
 var highscoreValue = document.querySelector("#highscore-score")
@@ -80,11 +80,11 @@ var quizquestion = [{
     }
 ]
 
-var secondleft = 60;
+var secondleft = 10;
 var currentquestionindex = 0
 var questionlenght = quizquestion.length
 var timerinterval
-
+var empty = []
 console.log(quizquestion)
 
 
@@ -100,14 +100,16 @@ function quizquestiontag(){
     buttonC.innerHTML = currentquestion.choiceC
     buttonD.innerHTML = currentquestion.choiceD
 }
-quizquestiontag()
+
 
 function settimer(){
-    secondleft = 60
+    secondleft = 10
 timerinterval = setInterval(function(){
     secondleft--;
     if(secondleft === 3){
         remainsecond.textContent = "Seconds Left"
+    }else if(secondleft === 1){
+        remainsecond.textContent = "Second Remaining"
     }
         if(secondleft === 0){
             clearInterval(timerinterval)
@@ -117,4 +119,46 @@ timerinterval = setInterval(function(){
     timecount.innerHTML =  secondleft  
 },1000)
 }
-settimer()
+
+
+function showscore(){
+    
+    var initial = inputinitial.value.trim()
+    inputinitial.value = "";
+    if(inputinitial === ""){
+        window.alert("Initial must not blank")
+        return;
+    }
+    displaypoint.textContent = "you score"+ quizquestion.correctanswer +" "+" of total"+" "+questionlenght
+    localStorage.setItem("initial",JSON.stringify(initial)) 
+    empty = []
+    for(var i = 0; i < initial.length;i++){
+      empty.push(i)
+      
+    }   
+    questionDiv.style.display="none"
+    enterinitialDiv.style.display = "block"
+}
+
+
+savescore.addEventListener("click",function(event){
+    event.preventDefault()
+    showscore()
+})
+
+
+
+function message(type,message){
+    answermessage.textContent = message
+    answermessage.setAttribute("class",type)
+}
+
+function startquiz(event){
+    event.preventDefault()
+    startgameDiv.style.display = "none"
+    questionDiv.style.display="flex"
+    quizquestiontag()
+}
+
+startgamebtn,addEventListener("click", startquiz)
+

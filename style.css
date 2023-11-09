@@ -33,9 +33,7 @@ main{
     color: white;
     border-radius: 20px;
     font-weight: 50px;
-    display: none;
- 
-   
+    display: none; 
    
 }
 #startgameDIV button{
@@ -66,8 +64,8 @@ main{
     justify-content: center;
     background-image: linear-gradient(to left, rgb(57, 57, 173),rgb(109, 49, 109),gray);
  border-radius: 20px;
-
-
+ box-shadow: 0px 0px 5px white;
+display: none;
 }
 
 
@@ -146,7 +144,7 @@ color: black;
 
 #enterinitial{
     width: 40%;
-    height: 20em;
+    height: 30em;
     border: 1px solid gray;
     margin: auto;
     position: absolute;
@@ -161,18 +159,31 @@ color: black;
     border-radius: 20px;
     justify-content: center;
     line-height: 2rem;
-    color: white;
+    color: white; 
+    box-shadow: 0px 0px 5px white;
     display: none;
+}
 
-  
+#allinitial{
+    width: 80%;
+    height: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: px solid black;
+    box-shadow: 0px 0px 5px white;
+    border-radius: 20px;
+    background-image: linear-gradient(to left, rgb(94, 79, 79),rgb(59, 40, 40),rgb(68, 21, 29));
 }
 #displaypoint{
     font-style: italic;
     color: rgb(216, 203, 203);
+    margin-top: 20px;
 }
 #enterinitial button{
-    width: 25%;
-  display: flex;
+    width: 40%;
   justify-content: center;
   margin-top: 10px;
   font-size: large;
@@ -216,7 +227,7 @@ border-radius: 20px;
  align-items: center;
  background-image: linear-gradient(to right,rgb(80, 44, 80),rgb(78, 44, 44),gray);
 
-    display: none;
+   
 }
 
 #scoreinfo{

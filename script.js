@@ -133,12 +133,11 @@ function showscore(){
     localStorage.setItem("initial",JSON.stringify(initial)) 
     empty = []
     for(var i = 0; i < initial.length;i++){
-      empty.push(initial)
+      empty.push(i)
       
     }   
     questionDiv.style.display="none"
     enterinitialDiv.style.display = "block"
-
 }
 
 
@@ -153,3 +152,13 @@ function message(type,message){
     answermessage.textContent = message
     answermessage.setAttribute("class",type)
 }
+
+function startquiz(event){
+    event.preventDefault()
+    startgameDiv.style.display = "none"
+    questionDiv.style.display="flex"
+    quizquestiontag()
+}
+
+startgamebtn,addEventListener("click", startquiz)
+

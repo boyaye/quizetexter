@@ -33,7 +33,7 @@ main{
     color: white;
     border-radius: 20px;
     font-weight: 50px;
-    display: none; 
+
    
 }
 #startgameDIV button{
@@ -226,7 +226,7 @@ input{
 border-radius: 20px;
  align-items: center;
  background-image: linear-gradient(to right,rgb(80, 44, 80),rgb(78, 44, 44),gray);
-
+display: none;
    
 }
 

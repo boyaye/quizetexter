@@ -13,14 +13,14 @@ var answermessage = document.querySelector("#correct-answer")
 var enterinitialDiv = document.querySelector("#enterinitial")
 var displaypoint = document.querySelector("#displaypoint")
 var inputinitial = document.querySelector("#inputvalue")
-var savescore = document.querySelector("#savescore")
-var displayinfoDIV = document.querySelector("#displayinfo")
+var savescorebtn = document.querySelector("#savescore")
+var displayinfoDIV = document.querySelector("#highscore")
 var scoreinitial = document.querySelector("#highscore-inital")
 var highscoreValue = document.querySelector("#highscore-score")
 var playagainBTN = document.querySelector("#playagain")
 var clearscore = document.querySelector("#clearscore")
 var remainsecond = document.querySelector("#remainsecond")
-
+var alertmessagestart= document.querySelector("#alertmessage")
 var quizquestion = [{
         question:"How many elements can you appply and 'ID' attribute to ?_______",
         choiceA: "a. As many as you want",
@@ -79,13 +79,13 @@ var quizquestion = [{
 
     }
 ]
-
-var secondleft = 10;
+var secondleft = 5;
 var currentquestionindex = 0
 var questionlenght = quizquestion.length
 var timerinterval
-var empty = []
-console.log(quizquestion)
+var disable = true
+
+
 
 
 function quizquestiontag(){
@@ -103,7 +103,7 @@ function quizquestiontag(){
 
 
 function settimer(){
-    secondleft = 10
+    secondleft = 5
 timerinterval = setInterval(function(){
     secondleft--;
     if(secondleft === 3){
@@ -126,24 +126,28 @@ function showscore(){
     var initial = inputinitial.value.trim()
     inputinitial.value = "";
     if(inputinitial === ""){
-        window.alert("Initial must not blank")
-        return;
+        alert("Initial must not blank")
     }
     displaypoint.textContent = "you score"+ quizquestion.correctanswer +" "+" of total"+" "+questionlenght
     localStorage.setItem("initial",JSON.stringify(initial)) 
     empty = []
     for(var i = 0; i < initial.length;i++){
       empty.push(i)
-      
-    }   
+
+    }  
     questionDiv.style.display="none"
     enterinitialDiv.style.display = "block"
+    
 }
 
 
-savescore.addEventListener("click",function(event){
+savescorebtn.addEventListener("click",function(event){
     event.preventDefault()
+    if(inputinitial === ""){
+      alert("Initial is required")
+    }
     showscore()
+
 })
 
 
@@ -154,11 +158,48 @@ function message(type,message){
 }
 
 function startquiz(event){
-    event.preventDefault()
+   
+   var text = "press ok to start \n or Cancel "
+   if(confirm(text) == true){
+    text = "start quiz";
+   }else {
+    text = "Accept ok to beginning quiz"
+    alertmessagestart.textContent = text
+    return;
+   }
+    
+   event.preventDefault()
     startgameDiv.style.display = "none"
     questionDiv.style.display="flex"
     quizquestiontag()
+    settimer()
 }
 
-startgamebtn,addEventListener("click", startquiz)
+startgamebtn.addEventListener("click", startquiz)
+
+highscorebtn.addEventListener("click", highscore)
+
+function highscore(event){
+    event.preventDefault()
+    displayinfoDIV.style.display = "block"
+    startgameDiv.style.display = "none"
+
+}
+
+playagainBTN.addEventListener("click",function(event){
+    event.preventDefault()
+   var message = "are you ready to play"
+    if(confirm(message) === true){
+        alert("start game")
+    }else{
+       alert("you cancel")
+        return
+    }
+    displayinfoDIV.style.display = "none";
+    questionDiv.style.display="flex"
+    quizquestiontag()
+    settimer()
+})
+
+
 

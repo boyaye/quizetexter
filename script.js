@@ -15,8 +15,8 @@ var displaypoint = document.querySelector("#displaypoint")
 var inputinitial = document.querySelector("#inputvalue")
 var savescorebtn = document.querySelector("#savescore")
 var displayinfoDIV = document.querySelector("#highscore")
-var scoreinitial = document.querySelector("#highscore-inital")
-var highscoreValue = document.querySelector("#highscore-score")
+var scoreinitial = document.querySelector("#initiallist")
+var highscoreValue = document.querySelector("#highscorelist")
 var playagainBTN = document.querySelector("#playagain")
 var clearscore = document.querySelector("#clearscore")
 var remainsecond = document.querySelector("#remainsecond")
@@ -79,11 +79,13 @@ var quizquestion = [{
 
     }
 ]
+var todo = []
 var secondleft = 5;
 var currentquestionindex = 0
 var questionlenght = quizquestion.length
 var timerinterval
 var disable = true
+var score = 0
 
 
 
@@ -122,35 +124,49 @@ timerinterval = setInterval(function(){
 
 
 function showscore(){
-    
-    var initial = inputinitial.value.trim()
     inputinitial.value = "";
-    if(inputinitial === ""){
-        alert("Initial must not blank")
-    }
     displaypoint.textContent = "you score"+ quizquestion.correctanswer +" "+" of total"+" "+questionlenght
-    localStorage.setItem("initial",JSON.stringify(initial)) 
-    empty = []
-    for(var i = 0; i < initial.length;i++){
-      empty.push(i)
-
-    }  
     questionDiv.style.display="none"
-    enterinitialDiv.style.display = "block"
-    
+    enterinitialDiv.style.display = "block"   
 }
 
 
-savescorebtn.addEventListener("click",function(event){
+savescorebtn.addEventListener("click", function(event){
     event.preventDefault()
-    if(inputinitial === ""){
-      alert("Initial is required")
+    var initialname = inputinitial.value.trim()
+    localStorage.setItem("savevalue",JSON.stringify(initialname))
+   
+    if(initialname === ""){
+        alert("Cannot be blank \n Enter initial to save highscore")
+        return;
+    }else{
+        var highscoresinfo = JSON.parse(localStorage.getItem("savevalue"))
+        var currentuser = {
+            name:highscoresinfo,
+            score:score
+           }
+     todo.push(currentuser)
     }
-    showscore()
+    displayinfoDIV.style.display = "block"
+    enterinitialDiv.style.display = "none"
+    generateinfo()
+}
+)
 
-})
 
-
+function generateinfo(){
+    highscoreValue.textContent = "";
+    scoreinitial.textContent = "";
+   for(var i = 0; i < todo.length;i++){
+     var Namescorein = document.createElement("li")
+     var highscorenum = document.createElement("li")
+     Namescorein.textContent = todo[i].name
+     highscorenum.textContent = todo[i].score
+     scoreinitial.appendChild(Namescorein) 
+     highscoreValue.appendChild(highscorenum)
+   }
+}
+   
 
 function message(type,message){
     answermessage.textContent = message
@@ -158,7 +174,7 @@ function message(type,message){
 }
 
 function startquiz(event){
-   
+    event.preventDefault()
    var text = "press ok to start \n or Cancel "
    if(confirm(text) == true){
     text = "start quiz";
@@ -168,7 +184,7 @@ function startquiz(event){
     return;
    }
     
-   event.preventDefault()
+   
     startgameDiv.style.display = "none"
     questionDiv.style.display="flex"
     quizquestiontag()
@@ -188,6 +204,9 @@ function highscore(event){
 
 playagainBTN.addEventListener("click",function(event){
     event.preventDefault()
+    secondleft = 60
+    currentquestionindex = 0
+    score = 0
    var message = "are you ready to play"
     if(confirm(message) === true){
         alert("start game")
@@ -201,5 +220,14 @@ playagainBTN.addEventListener("click",function(event){
     settimer()
 })
 
+
+
+clearscore.addEventListener("click",function clearscore(event){
+    event.preventDefault()
+    scoreinitial.textContent = "";
+    highscoreValue.textContent = "";
+    localStorage.clear()
+
+})
 
 

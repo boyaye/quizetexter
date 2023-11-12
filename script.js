@@ -109,36 +109,18 @@ function playquiz(value){
   correct = quizquestion[currentquestionindex].correctanswer
   if(value === correct && currentquestionindex !== questionlenght){
   score++
-alert("correct")
+  message("success","Correct !!!")
 currentquestionindex++;
 quizquestiontag()
   }else if(value !== correct && currentquestionindex !== questionlenght){
-   alert("wrong answer")
+ message("error","Wrong !!!") 
    currentquestionindex++
    quizquestiontag()
 }  else{
     showscore()
 }
 }
-/*
-buttonA.addEventListener("click",function(event){
-    event.preventDefault()
-    playquiz(a)
-})
 
-buttonB.addEventListener("click", function(event){
-    event.preventDefault()
-    playquiz(b)
-})
-
-buttonC.addEventListener("click",function(event){
-    event.preventDefault(c)
-})
-buttonA.addEventListener("click",function(event){
-    event.preventDefault()
-    playquiz(d)
-})
-*/
 
 function settimer(){
     secondleft = 60
@@ -280,5 +262,6 @@ homepageBTN.addEventListener("click",function(event){
     event.preventDefault()
     displayinfoDIV.style.display = "none";
     startgameDiv.style.display = "flex"
+    alertmessagestart.textContent = "";
 })
 

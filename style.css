@@ -289,13 +289,25 @@ ul{
     background-color: aquamarine;
     width: 50px;
     margin-bottom: 5px;
-    margin-top: 5px;
+    margin-top: 7px;
     color: black;
     font-size: large;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
 }
 #initiallist li{
-    border-bottom: 3px solid blue;
+    background-color: aquamarine;
+    border-bottom: 2px solid red;
+    border-radius: 5px 5px 0 0;
     width: 200px;
     margin-bottom: 5px;
+    color: black;
+    margin-top: 5px;
+}
+
+.error{
+    color: red;
+}
+
+.success{
+    color:green;
 }

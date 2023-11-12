@@ -86,7 +86,8 @@ var questionlenght = quizquestion.length
 var timerinterval
 var disable = true
 var score = 0
-
+var currentuser
+var i;
 
 
 
@@ -134,18 +135,18 @@ function showscore(){
 savescorebtn.addEventListener("click", function(event){
     event.preventDefault()
     var initialname = inputinitial.value.trim()
-    localStorage.setItem("savevalue",JSON.stringify(initialname))
+    
    
     if(initialname === ""){
         alert("Cannot be blank \n Enter initial to save highscore")
         return;
     }else{
-        var highscoresinfo = JSON.parse(localStorage.getItem("savevalue"))
-        var currentuser = {
-            name:highscoresinfo,
+        currentuser = {
+            name:initialname,
             score:score
            }
      todo.push(currentuser)
+     localStorage.setItem("savevalue",JSON.stringify(todo))
     }
     displayinfoDIV.style.display = "block"
     enterinitialDiv.style.display = "none"
@@ -157,7 +158,7 @@ savescorebtn.addEventListener("click", function(event){
 function generateinfo(){
     highscoreValue.textContent = "";
     scoreinitial.textContent = "";
-   for(var i = 0; i < todo.length;i++){
+   for(i = 0; i < todo.length;i++){
      var Namescorein = document.createElement("li")
      var highscorenum = document.createElement("li")
      Namescorein.textContent = todo[i].name
@@ -183,8 +184,6 @@ function startquiz(event){
     alertmessagestart.textContent = text
     return;
    }
-    
-   
     startgameDiv.style.display = "none"
     questionDiv.style.display="flex"
     quizquestiontag()
@@ -199,9 +198,10 @@ function highscore(event){
     event.preventDefault()
     displayinfoDIV.style.display = "block"
     startgameDiv.style.display = "none"
-
+  
 }
-
+var storetodo = localStorage.getItem("savevalue")
+console.log(storetodo)
 playagainBTN.addEventListener("click",function(event){
     event.preventDefault()
     secondleft = 60
@@ -224,8 +224,9 @@ playagainBTN.addEventListener("click",function(event){
 
 clearscore.addEventListener("click",function clearscore(event){
     event.preventDefault()
-    scoreinitial.textContent = "";
-    highscoreValue.textContent = "";
+
+    scoreinitial.innerHTML = "";
+    highscoreValue.innerHTML = "";
     localStorage.clear()
 
 })

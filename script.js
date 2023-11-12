@@ -21,6 +21,7 @@ var playagainBTN = document.querySelector("#playagain")
 var clearscore = document.querySelector("#clearscore")
 var remainsecond = document.querySelector("#remainsecond")
 var alertmessagestart= document.querySelector("#alertmessage")
+var homepageBTN = document.querySelector("#homepage")
 var quizquestion = [{
         question:"How many elements can you appply and 'ID' attribute to ?_______",
         choiceA: "a. As many as you want",
@@ -88,7 +89,7 @@ var disable = true
 var score = 0
 var currentuser
 var i;
-
+var correct
 
 
 function quizquestiontag(){
@@ -104,9 +105,43 @@ function quizquestiontag(){
     buttonD.innerHTML = currentquestion.choiceD
 }
 
+function playquiz(value){
+  correct = quizquestion[currentquestionindex].correctanswer
+  if(value === correct && currentquestionindex !== questionlenght){
+  score++
+alert("correct")
+currentquestionindex++;
+quizquestiontag()
+  }else if(value !== correct && currentquestionindex !== questionlenght){
+   alert("wrong answer")
+   currentquestionindex++
+   quizquestiontag()
+}  else{
+    showscore()
+}
+}
+/*
+buttonA.addEventListener("click",function(event){
+    event.preventDefault()
+    playquiz(a)
+})
+
+buttonB.addEventListener("click", function(event){
+    event.preventDefault()
+    playquiz(b)
+})
+
+buttonC.addEventListener("click",function(event){
+    event.preventDefault(c)
+})
+buttonA.addEventListener("click",function(event){
+    event.preventDefault()
+    playquiz(d)
+})
+*/
 
 function settimer(){
-    secondleft = 5
+    secondleft = 60
 timerinterval = setInterval(function(){
     secondleft--;
     if(secondleft === 3){
@@ -126,7 +161,7 @@ timerinterval = setInterval(function(){
 
 function showscore(){
     inputinitial.value = "";
-    displaypoint.textContent = "you score"+ quizquestion.correctanswer +" "+" of total"+" "+questionlenght
+    displaypoint.textContent = "you score"+" "+ score +" "+" of total"+" "+questionlenght
     questionDiv.style.display="none"
     enterinitialDiv.style.display = "block"   
 }
@@ -134,6 +169,7 @@ function showscore(){
 
 savescorebtn.addEventListener("click", function(event){
     event.preventDefault()
+ 
     var initialname = inputinitial.value.trim()
     
    
@@ -198,10 +234,17 @@ function highscore(event){
     event.preventDefault()
     displayinfoDIV.style.display = "block"
     startgameDiv.style.display = "none"
+    var savetodo = JSON.parse(localStorage.getItem("savevalue"))
+    if(savetodo === null){
+        savetodo = "";
+    }
+    generateinfo()
+
   
 }
-var storetodo = localStorage.getItem("savevalue")
-console.log(storetodo)
+
+
+
 playagainBTN.addEventListener("click",function(event){
     event.preventDefault()
     secondleft = 60
@@ -228,7 +271,14 @@ clearscore.addEventListener("click",function clearscore(event){
     scoreinitial.innerHTML = "";
     highscoreValue.innerHTML = "";
     localStorage.clear()
+  
 
 })
 
+
+homepageBTN.addEventListener("click",function(event){
+    event.preventDefault()
+    displayinfoDIV.style.display = "none";
+    startgameDiv.style.display = "flex"
+})
 

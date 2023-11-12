@@ -18,7 +18,7 @@ main{
 
 #startgameDIV{
     width: 40%;
-    height: 20em;
+    height: 30em;
     border: 0px solid gray;
     margin: auto;
     position: absolute;
@@ -217,7 +217,7 @@ input{
 
 #highscore{
     width: 40%;
-    height: 20em;
+    height: 30em;
     border: 1px solid gray;
     color: white;
     margin:  auto;
@@ -270,4 +270,32 @@ display: none;
     border: none;
     color:white;
 background-image: linear-gradient(to right, rgb(142, 155, 142), rgb(41, 41, 114))
+}
+
+#homepage{
+    position: absolute;
+    left: 2em;
+    top: 19em;
+    border-radius: 10px;
+    font-size: large;
+}
+
+ul{
+    line-height: 2em;
+}
+
+#highscorelist li{
+    border: 0px dashed red;
+    background-color: aquamarine;
+    width: 50px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    color: black;
+    font-size: large;
+    border-radius: 5px;
+}
+#initiallist li{
+    border-bottom: 3px solid blue;
+    width: 200px;
+    margin-bottom: 5px;
 }

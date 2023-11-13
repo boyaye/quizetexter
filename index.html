@@ -7,7 +7,16 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-   <h1 style="color: white;">have fun learning</h1>
+    <audio  id="audioplay">
+        <source src="./mixkit-retro-game-notification-212.wav">
+    </audio>
+    <audio  id="successaudio">
+        <source src="./mixkit-wrong-answer-bass-buzzer-948.wav">
+    </audio>
+    <audio id="playback">
+        <source src="./level-win-6416.mp3">
+    </audio>
+   <h1 >have fun learning</h1>
     <main>
     <div id="startgameDIV">
         <h1>Coding time quized</h1>
@@ -16,20 +25,20 @@
             <button id="startgame">Start quiz</button>
             <button id="highscorecheck">view highscore</button>
         </div>
-       <h2 id="alertmessage" style="margin-top: 30px; font-style: italic; font-size: 20px; color: red;"></h2>
+       <h2 id="alertmessage"></h2>
     </div>
     <div id="questiondiv">
         <div id="minuteleft">
             <h6 id="remainsecond">Time Left</h6>
             <span id="timecount">60</span>
         </div>
-        <div><p id="questionmessage">this is the love</p></div>
+        <div><p id="questionmessage"></p></div>
         <div id="answerlist">
-            <ol>
-                <button id="a" onclick="playquiz('a')">A</button>
-                <button id="b" onclick="playquiz('b')">B</button>
-                <button id="c" onclick="playquiz('c')">C</button>
-                <button id="d" onclick="playquiz('d')">D</button>      
+                <button id="a" onclick="playquiz('a')">questiona</button>
+                <button id="b" onclick="playquiz('b')">questionb</button>
+                <button id="c" onclick="playquiz('c')">questionc</button>
+                <button id="d" onclick="playquiz('d')">questiond</button>  
+            
         </div>
         <div id="displaymessage">
         <h3 id="correct-answer"></h3>
@@ -39,7 +48,7 @@
         <div id="allinitial">
         <p id="displaypoint">display point</p>
         <div id="inputlabel">
-            <label>Enter Initial :</label>
+            <label for="inputvalue">Enter Initial :</label>
             <input id="inputvalue" type="text" placeholder="enter intial for high score">
         </div>
         <button  id="savescore">Save score</button>
@@ -64,7 +73,7 @@
     <button id="playagain">play again</button>
     <button id="clearscore">clear Scores</button>
 </div>
-<button id="homepage"  style="margin-top: 50px; background-color: black; color: white; padding: 15px;">Home page</button>
+<button id="homepage">Home page</button>
     </div>
 
 

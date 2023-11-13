@@ -22,6 +22,9 @@ var clearscore = document.querySelector("#clearscore")
 var remainsecond = document.querySelector("#remainsecond")
 var alertmessagestart= document.querySelector("#alertmessage")
 var homepageBTN = document.querySelector("#homepage")
+var successaudio = document.querySelector("#audioplay")
+var wrongaudio = document.querySelector("#successaudio")
+var playback = document.querySelector("#playback")
 var quizquestion = [{
         question:"How many elements can you appply and 'ID' attribute to ?_______",
         choiceA: "a. As many as you want",
@@ -48,10 +51,10 @@ var quizquestion = [{
     },
     {
         question:" What HTML tag are Javascript code wrapped in?_______",
-        choiceA: "1. &lt;div&gt;",
-        ChoiceB: "2. &lt;link&gt",
-        choiceC: "3. &lt;head&gt;",
-        choiceD: "4. &lt;,script&gt",
+        choiceA: "1. <div>",
+        ChoiceB: "2. <link>",
+        choiceC: "3. <head>",
+        choiceD: "4. <script>",
         correctanswer:"d",
     },
     {
@@ -81,7 +84,7 @@ var quizquestion = [{
     }
 ]
 var todo = []
-var secondleft = 5;
+var secondleft = 60;
 var currentquestionindex = 0
 var questionlenght = quizquestion.length
 var timerinterval
@@ -93,16 +96,18 @@ var correct
 
 
 function quizquestiontag(){
+
     enterinitialDiv.style.display = "none";
     if(currentquestionindex === questionlenght){
         showscore()
     }
     var currentquestion = quizquestion[currentquestionindex]
-    questionEl.innerHTML = currentquestion.question
-    buttonA.innerHTML = currentquestion.choiceA
-    buttonB.innerHTML = currentquestion.ChoiceB
-    buttonC.innerHTML = currentquestion.choiceC
-    buttonD.innerHTML = currentquestion.choiceD
+    questionEl.textContent = currentquestion.question
+    buttonA.textContent = currentquestion.choiceA
+    buttonB.textContent = currentquestion.ChoiceB
+    buttonC.textContent = currentquestion.choiceC
+    buttonD.textContent = currentquestion.choiceD
+   
 }
 
 function playquiz(value){
@@ -111,15 +116,18 @@ function playquiz(value){
   score++
   message("success","Correct !!!")
 currentquestionindex++;
+successaudio.play()
 quizquestiontag()
   }else if(value !== correct && currentquestionindex !== questionlenght){
  message("error","Wrong !!!") 
    currentquestionindex++
+   wrongaudio.play()
    quizquestiontag()
 }  else{
     showscore()
 }
 }
+
 
 
 function settimer(){
@@ -153,8 +161,6 @@ savescorebtn.addEventListener("click", function(event){
     event.preventDefault()
  
     var initialname = inputinitial.value.trim()
-    
-   
     if(initialname === ""){
         alert("Cannot be blank \n Enter initial to save highscore")
         return;
@@ -217,21 +223,18 @@ function highscore(event){
     displayinfoDIV.style.display = "block"
     startgameDiv.style.display = "none"
     var savetodo = JSON.parse(localStorage.getItem("savevalue"))
-    if(savetodo === null){
-        savetodo = "";
-    }
-    generateinfo()
+    if(savetodo !== null){
+        todo = savetodo;
+    }  
+    generateinfo() 
 
-  
 }
 
 
 
 playagainBTN.addEventListener("click",function(event){
     event.preventDefault()
-    secondleft = 60
-    currentquestionindex = 0
-    score = 0
+    answermessage.textContent = "";
    var message = "are you ready to play"
     if(confirm(message) === true){
         alert("start game")
@@ -239,6 +242,7 @@ playagainBTN.addEventListener("click",function(event){
        alert("you cancel")
         return
     }
+ 
     displayinfoDIV.style.display = "none";
     questionDiv.style.display="flex"
     quizquestiontag()

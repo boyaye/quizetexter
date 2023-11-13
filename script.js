@@ -101,34 +101,36 @@ function quizquestiontag(){
     if(currentquestionindex === questionlenght){
         showscore()
     }
+   
     var currentquestion = quizquestion[currentquestionindex]
-    questionEl.textContent = currentquestion.question
     buttonA.textContent = currentquestion.choiceA
     buttonB.textContent = currentquestion.ChoiceB
     buttonC.textContent = currentquestion.choiceC
     buttonD.textContent = currentquestion.choiceD
-   
+    questionEl.textContent = currentquestion.question
+    
 }
 
 function playquiz(value){
   correct = quizquestion[currentquestionindex].correctanswer
   if(value === correct && currentquestionindex !== questionlenght){
   score++
+  currentquestionindex++;
   message("success","Correct !!!")
-currentquestionindex++;
+  quizquestiontag()
+
 successaudio.play()
-quizquestiontag()
+
   }else if(value !== correct && currentquestionindex !== questionlenght){
  message("error","Wrong !!!") 
-   currentquestionindex++
+ currentquestionindex++
+ quizquestiontag()
    wrongaudio.play()
-   quizquestiontag()
+   
 }  else{
     showscore()
 }
 }
-
-
 
 function settimer(){
     secondleft = 60
@@ -208,10 +210,13 @@ function startquiz(event){
     alertmessagestart.textContent = text
     return;
    }
+   enterinitialDiv.style.display = "none"  
     startgameDiv.style.display = "none"
     questionDiv.style.display="flex"
-    quizquestiontag()
+    playback.play()
     settimer()
+    quizquestiontag()
+    
 }
 
 startgamebtn.addEventListener("click", startquiz)
@@ -242,11 +247,14 @@ playagainBTN.addEventListener("click",function(event){
        alert("you cancel")
         return
     }
- 
-    displayinfoDIV.style.display = "none";
+    
+    displayinfoDIV.style.display = "none"
+    enterinitialDiv.style.display = "none"  
     questionDiv.style.display="flex"
     quizquestiontag()
     settimer()
+    playback.play()
+    
 })
 
 
@@ -264,6 +272,7 @@ clearscore.addEventListener("click",function clearscore(event){
 
 homepageBTN.addEventListener("click",function(event){
     event.preventDefault()
+    playback.play()
     displayinfoDIV.style.display = "none";
     startgameDiv.style.display = "flex"
     alertmessagestart.textContent = "";

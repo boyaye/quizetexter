@@ -8,13 +8,23 @@
 body{
     background-color: rgb(7, 3, 3);
 }
-body h1{
+#fun{
 color: white;
 padding: 10px;
-animation-name: mover;
-     
+animation-name: mover; 
+animation-duration: 20s;  
+position: relative; 
+animation-delay: 2s;
+animation-iteration-count:infinite;
 }
 
+@keyframes mover{
+    0% {color: brown; left: 50px; top: 50px;}
+    25%  {color: blue; left: 80%; top: 50px;}
+    50% {color: pink; left: 80%; top: 25em;}
+    80% {color: aquamarine; left: 20px; top: 25em;}
+    100% { color: blueviolet; left: 20px ; top: 0px;}
+}
 
 
 main{

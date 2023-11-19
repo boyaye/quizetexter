@@ -111,9 +111,9 @@ display: none;
     height: 90px;
     width: 90px;
     background-color: black;
-    position: relative;
+    position: absolute;
     left: 85%;
-    bottom: 20px;
+    bottom: 9.5em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -345,4 +345,70 @@ ul{
 
 .success{
     color:green;
+}
+
+@media screen and (max-width: 600px){
+    body {
+        background-color: rgb(19, 19, 68);
+
+    }
+
+    #startgameDIV {
+        width: 80%;
+        line-height: 1.5em;
+        color: burlywood;
+    }
+
+    #questiondiv{
+        width: 90%;
+    }
+    #enterinitial{
+        width: 95%; 
+    }
+    #allinitial{   
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+    }
+    #displaypoint{
+        color: rgb(232, 232, 238);
+    }
+ 
+    #allinitial button{
+        position:relative;
+       bottom: 20px;
+       right: 20px;
+    }
+input,
+label{
+ margin-left: 100px;
+}
+
+    #highscore{
+        width: 90%;
+    }
+    #minuteleft{
+        position: absolute;
+    left: 9.7em;
+    bottom: 16.6em;
+    font-size: 25px;
+    height: 60px ;
+    border-radius: 15px;
+    background-color: blue;
+    animation-name: time;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    }
+
+    @keyframes time {
+        0%{background-color: blue;}
+        25%{background-color: brown;}
+        30%{background-color: chocolate;}
+        50%{background-color: darkcyan;}
+        60%{background-color: pink;}
+    }
+    
 }

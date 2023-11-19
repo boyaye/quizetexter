@@ -16,7 +16,7 @@ animation-duration: 20s;
 position: relative; 
 animation-delay: -0.5s;
 animation-iteration-count:infinite;
-animation-direction: alternate;
+animation-direction:alternate;
 animation-timing-function: ease-in-out;
 
 }
@@ -351,9 +351,22 @@ ul{
     body {
        max-width: fit-content;
         background-color: rgb(19, 19, 68);
-        overflow: auto;
-
     }
+body h1{
+    animation: mover 4s infinite ease-in ;
+}
+
+@keyframes mover {
+  0%{color: blanchedalmond;}
+  25%{color: brown; }
+  30%{color: darkolivegreen;}
+  50%{color: orange;}
+  80%{color: black;}
+  90%{color: aqua;}
+  95%{color: lawngreen;}
+  100%{color: blue;}
+    
+}
     #againbtn{
         display: flex;
     }
@@ -369,12 +382,15 @@ ul{
     }
     #fun{
         font-size: 20px;
+        animation-name: fun;
+        animation-duration: 2s;
+       
     }
 
     #startgameDIV {
         width: 80%;
         line-height: 1.5em;
-        color: burlywood;
+        color: rgb(189, 184, 199);
     }
 
     #questiondiv{
@@ -404,7 +420,8 @@ label{
  margin-left: 100px;
 }
 #enterinitial button{
-    font-size: 15px;
+    font-size: 10px;
+    width: 60%;
 }
 
 label{
@@ -426,6 +443,7 @@ label{
     animation-duration: 10s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
+    animation-delay: 2s;
     }
 
     @keyframes time {

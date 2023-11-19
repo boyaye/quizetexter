@@ -353,7 +353,7 @@ ul{
         background-color: rgb(19, 19, 68);
     }
 body h1{
-    animation: mover 4s infinite ease-in ;
+    animation: mover 8s infinite ease-in-out ;
 }
 
 @keyframes mover {
@@ -381,11 +381,21 @@ body h1{
         background-color: rgb(236, 186, 186);
     }
     #fun{
+        position:relative;
         font-size: 20px;
         animation-name: fun;
-        animation-duration: 2s;
-       
+        animation-duration: 4s;
+        animation-duration: 5s;
+  
     }
+
+@keyframes fun {
+    from{color: blue; top: 50px;left: 0px;}
+    to{color: brown; left: 240px; top: 50px;}
+    
+}
+
+
 
     #startgameDIV {
         width: 80%;

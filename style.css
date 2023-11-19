@@ -403,6 +403,9 @@ input,
 label{
  margin-left: 100px;
 }
+#enterinitial button{
+    font-size: 15px;
+}
 
 label{
     font-size: 20px;

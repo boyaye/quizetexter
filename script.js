@@ -229,8 +229,8 @@ function highscore(event){
     startgameDiv.style.display = "none"
     var savetodo = JSON.parse(localStorage.getItem("savevalue"))
     if(savetodo !== null){
-        todo = savetodo;
-    }  
+        todo = savetodo
+    }
     generateinfo() 
 
 }
@@ -239,7 +239,10 @@ function highscore(event){
 
 playagainBTN.addEventListener("click",function(event){
     event.preventDefault()
-    answermessage.textContent = "";
+    event.preventDefault()
+    secondleft = 60
+    currentquestionindex = 0
+    score = 0
    var message = "are you ready to play"
     if(confirm(message) === true){
         alert("start game")
@@ -247,9 +250,7 @@ playagainBTN.addEventListener("click",function(event){
        alert("you cancel")
         return
     }
-    
-    displayinfoDIV.style.display = "none"
-    enterinitialDiv.style.display = "none"  
+    displayinfoDIV.style.display = "none";
     questionDiv.style.display="flex"
     quizquestiontag()
     settimer()
@@ -258,23 +259,22 @@ playagainBTN.addEventListener("click",function(event){
 })
 
 
-
 clearscore.addEventListener("click",function clearscore(event){
     event.preventDefault()
-
-    scoreinitial.innerHTML = "";
-    highscoreValue.innerHTML = "";
-    localStorage.clear()
+    scoreinitial.textContent = "";
+    highscoreValue.textContent = "";
+    window.localStorage.clear()
   
-
 })
 
 
 homepageBTN.addEventListener("click",function(event){
     event.preventDefault()
     playback.play()
+    enterinitialDiv.style.display = "none"  
     displayinfoDIV.style.display = "none";
     startgameDiv.style.display = "flex"
     alertmessagestart.textContent = "";
+    answermessage.textContent = "";
 })
 

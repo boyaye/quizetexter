@@ -308,9 +308,9 @@ background-image: linear-gradient(to right, rgb(142, 155, 142), rgb(41, 41, 114)
 }
 
 #homepage{
-    position: absolute;
-    left: 2em;
-    top: 19em;
+    position: relative;
+    left: 1em;
+    top: 9em;
     border-radius: 10px;
     font-size: large;
 }
@@ -349,8 +349,26 @@ ul{
 
 @media screen and (max-width: 600px){
     body {
+        max-width:fit-content;
         background-color: rgb(19, 19, 68);
+        overflow: auto;
 
+    }
+    #againbtn{
+        display: flex;
+    }
+    #highscorelist li{
+        width: 30px;
+        background-color: pink;
+        margin-left: -40px;
+    }
+    #initiallist li{
+        width: 100px;
+        margin-left: -60px;
+        background-color: rgb(236, 186, 186);
+    }
+    #fun{
+        font-size: 20px;
     }
 
     #startgameDIV {
@@ -363,7 +381,7 @@ ul{
         width: 90%;
     }
     #enterinitial{
-        width: 95%; 
+        width: 90%; 
     }
     #allinitial{   
   display: flex;

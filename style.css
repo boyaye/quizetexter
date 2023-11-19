@@ -308,9 +308,9 @@ background-image: linear-gradient(to right, rgb(142, 155, 142), rgb(41, 41, 114)
 }
 
 #homepage{
-    position: relative;
-    left: 1em;
-    top: 9em;
+    position: absolute;
+    left: 2em;
+    top: 19em;
     border-radius: 10px;
     font-size: large;
 }
@@ -349,7 +349,7 @@ ul{
 
 @media screen and (max-width: 600px){
     body {
-        max-width:fit-content;
+       max-width: fit-content;
         background-color: rgb(19, 19, 68);
         overflow: auto;
 
@@ -429,4 +429,21 @@ label{
         60%{background-color: pink;}
     }
     
+}
+
+@media screen and (max-width:390px){
+    #minuteleft{
+        align-items: center;
+    position: absolute;
+    left: 5em;
+    bottom: 16.6em;
+    font-size: 25px;
+    height: 60px ;
+    border-radius: 15px;
+    background-color: blue;
+    animation-name: time;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    } 
 }

@@ -14,16 +14,19 @@ padding: 10px;
 animation-name: mover; 
 animation-duration: 20s;  
 position: relative; 
-animation-delay: 2s;
+animation-delay: -0.5s;
 animation-iteration-count:infinite;
+animation-direction: alternate;
+animation-timing-function: ease-in-out;
+
 }
 
 @keyframes mover{
     0% {color: brown; left: 50px; top: 50px;}
     25%  {color: blue; left: 80%; top: 50px;}
     50% {color: pink; left: 80%; top: 25em;}
-    80% {color: aquamarine; left: 20px; top: 25em;}
-    100% { color: blueviolet; left: 20px ; top: 0px;}
+    80% {color: aquamarine; left: 50px; top: 25em;}
+    100% { color: blueviolet; left: 50px ; top: 0px;}
 }
 
 

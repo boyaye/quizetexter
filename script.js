@@ -205,11 +205,13 @@ function startquiz(event){
    var text = "press ok to start \n or Cancel "
    if(confirm(text) == true){
     text = "start quiz";
+
    }else {
     text = "Accept ok to beginning quiz"
     alertmessagestart.textContent = text
     return;
    }
+   
    enterinitialDiv.style.display = "none"  
     startgameDiv.style.display = "none"
     questionDiv.style.display="flex"
@@ -246,6 +248,8 @@ playagainBTN.addEventListener("click",function(event){
    var message = "are you ready to play"
     if(confirm(message) === true){
         alert("start game")
+        answermessage.textContent = "";
+       
     }else{
        alert("you cancel")
         return

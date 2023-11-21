@@ -203,7 +203,7 @@ function message(type,message){
 function startquiz(event){
     event.preventDefault()
    var text = "press ok to start \n or Cancel "
-   if(confirm(text) == true){
+   if(confirm(text) === true){
     text = "start quiz";
 
    }else {
@@ -241,7 +241,6 @@ function highscore(event){
 
 playagainBTN.addEventListener("click",function(event){
     event.preventDefault()
-    event.preventDefault()
     secondleft = 60
     currentquestionindex = 0
     score = 0
@@ -265,6 +264,10 @@ playagainBTN.addEventListener("click",function(event){
 
 clearscore.addEventListener("click",function clearscore(event){
     event.preventDefault()
+    var newtodo = JSON.parse(localStorage.getItem("savevalue"))
+    if(newtodo !== null){
+      todo = "";
+    }
     scoreinitial.textContent = "";
     highscoreValue.textContent = "";
     window.localStorage.clear()

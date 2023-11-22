@@ -231,13 +231,11 @@ highscorebtn.addEventListener("click", highscore)
 
 function highscore(event){
     event.preventDefault()
-
-
     displayinfoDIV.style.display = "block"
     startgameDiv.style.display = "none"
     var savetodo = JSON.parse(localStorage.getItem("savevalue"))
     if(savetodo !== null){
-        todo = savetodo
+        savedhightscore = savetodo
     }
     generateinfo() 
 

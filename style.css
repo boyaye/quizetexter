@@ -365,6 +365,16 @@ body h1{
   100%{color: blue;}
     
 } 
+#startgameDIV button{
+    border-radius: 15px;
+    border: none;
+    color: aliceblue;
+    background-color: rgb(55, 71, 71);   
+}
+#startgameDIV button:hover{
+    background-color: aliceblue;
+    color: black;
+}
 
 #questiondiv button:hover{
     box-shadow: 0 0 5px orange;

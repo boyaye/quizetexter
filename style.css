@@ -150,16 +150,14 @@ color: black;
 
 }
 #questiondiv button:hover{
-    background-color: rgb(19, 18, 18);
-    color: white;
-    opacity: 0.5;
-    box-shadow: 2px 2px 5px blue;
+   box-shadow: 0px 0px 6px blue;
 }
 #questiondiv button:active {
     background-color: rgb(65, 15, 15);
-   
+    font-size: 20px;
 
 }
+
 
 
 #questiondiv button li{
@@ -366,6 +364,10 @@ body h1{
   95%{color: lawngreen;}
   100%{color: blue;}
     
+} 
+
+#questiondiv button:hover{
+    box-shadow: 0 0 5px orange;
 }
     #againbtn{
         display: flex;
@@ -430,7 +432,7 @@ label{
  margin-left: 100px;
 }
 #enterinitial button{
-    font-size: 10px;
+    font-size: 20px;
     width: 60%;
 }
 

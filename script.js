@@ -51,10 +51,10 @@ var quizquestion = [{
     },
     {
         question:" What HTML tag are Javascript code wrapped in?_______",
-        choiceA: "1. <div>",
-        ChoiceB: "2. <link>",
-        choiceC: "3. <head>",
-        choiceD: "4. <script>",
+        choiceA: "1. &lt;div&gt;",
+        ChoiceB: "2. &lt;link&gt;",
+        choiceC: "3. &lt;head&gt;",
+        choiceD: "4. &lt;script&gt;",
         correctanswer:"d",
     },
     {
@@ -90,7 +90,7 @@ var questionlenght = quizquestion.length
 var timerinterval
 var disable = true
 var score = 0
-var currentuser
+var currentuser = "";
 var i;
 var correct
 
@@ -102,14 +102,14 @@ function quizquestiontag(){
         showscore()
     }
    
-    var currentquestion = quizquestion[currentquestionindex]
-    buttonA.textContent = currentquestion.choiceA
-    buttonB.textContent = currentquestion.ChoiceB
-    buttonC.textContent = currentquestion.choiceC
-    buttonD.textContent = currentquestion.choiceD
-    questionEl.textContent = currentquestion.question
-    
-}
+    var currentquestion = quizquestion[currentquestionindex];
+    questionEl.innerHTML = currentquestion.question;
+    buttonA.innerHTML = currentquestion.choiceA;
+    buttonB.innerHTML = currentquestion.ChoiceB;
+    buttonC.innerHTML = currentquestion.choiceC;
+    buttonD.innerHTML = currentquestion.choiceD;
+   
+};
 
 function playquiz(value){
   correct = quizquestion[currentquestionindex].correctanswer
@@ -118,7 +118,6 @@ function playquiz(value){
   currentquestionindex++;
   message("success","Correct !!!")
   quizquestiontag()
-
 successaudio.play()
 
   }else if(value !== correct && currentquestionindex !== questionlenght){
@@ -161,21 +160,23 @@ function showscore(){
 
 savescorebtn.addEventListener("click", function(event){
     event.preventDefault()
- 
-    var initialname = inputinitial.value.trim()
-    if(initialname === ""){
+    
+    if(inputinitial.value === ""){
         alert("Cannot be blank \n Enter initial to save highscore")
         return;
     }else{
+        var savedhightscore = JSON.parse(localStorage.getItem("savevalue")) || [];
+        var initialname = inputinitial.value.trim()
         currentuser = {
             name:initialname,
             score:score
-           }
-     todo.push(currentuser)
-     localStorage.setItem("savevalue",JSON.stringify(todo))
+           };
+    
     }
-    displayinfoDIV.style.display = "block"
     enterinitialDiv.style.display = "none"
+    displayinfoDIV.style.display = "block"
+    savedhightscore.push(currentuser)
+    localStorage.setItem("savevalue",JSON.stringify(savedhightscore))
     generateinfo()
 }
 )
@@ -184,11 +185,12 @@ savescorebtn.addEventListener("click", function(event){
 function generateinfo(){
     highscoreValue.textContent = "";
     scoreinitial.textContent = "";
-   for(i = 0; i < todo.length;i++){
+    var highscore = JSON.parse(localStorage.getItem("savevalue")) || [];
+   for(i = 0; i < highscore.length;i++){
      var Namescorein = document.createElement("li")
      var highscorenum = document.createElement("li")
-     Namescorein.textContent = todo[i].name
-     highscorenum.textContent = todo[i].score
+     Namescorein.textContent = highscore[i].name
+     highscorenum.textContent = highscore[i].score
      scoreinitial.appendChild(Namescorein) 
      highscoreValue.appendChild(highscorenum)
    }
@@ -205,20 +207,22 @@ function startquiz(event){
    var text = "press ok to start \n or Cancel "
    if(confirm(text) === true){
     text = "start quiz";
+    secondleft = 60
+    currentquestionindex = 0
+    score = 0
+    enterinitialDiv.style.display = "none"  
+    startgameDiv.style.display = "none"
+    questionDiv.style.display="flex"
+    playback.play()
+    settimer()
+    quizquestiontag()
 
    }else {
     text = "Accept ok to beginning quiz"
     alertmessagestart.textContent = text
     return;
    }
-   
-   enterinitialDiv.style.display = "none"  
-    startgameDiv.style.display = "none"
-    questionDiv.style.display="flex"
-    playback.play()
-    settimer()
-    quizquestiontag()
-    
+ 
 }
 
 startgamebtn.addEventListener("click", startquiz)
@@ -227,6 +231,8 @@ highscorebtn.addEventListener("click", highscore)
 
 function highscore(event){
     event.preventDefault()
+
+
     displayinfoDIV.style.display = "block"
     startgameDiv.style.display = "none"
     var savetodo = JSON.parse(localStorage.getItem("savevalue"))
@@ -241,33 +247,31 @@ function highscore(event){
 
 playagainBTN.addEventListener("click",function(event){
     event.preventDefault()
-    secondleft = 60
-    currentquestionindex = 0
-    score = 0
+
    var message = "are you ready to play"
     if(confirm(message) === true){
         alert("start game")
+        secondleft = 60
+    currentquestionindex = 0
+    score = 0
+    displayinfoDIV.style.display = "none";
+    questionDiv.style.display="flex"
+    quizquestiontag()
+    settimer()
+    playback.play()
         answermessage.textContent = "";
        
     }else{
        alert("you cancel")
         return
     }
-    displayinfoDIV.style.display = "none";
-    questionDiv.style.display="flex"
-    quizquestiontag()
-    settimer()
-    playback.play()
-    
+   
 })
 
 
-clearscore.addEventListener("click",function clearscore(event){
+clearscore.addEventListener("click",function(event){
     event.preventDefault()
-    var newtodo = JSON.parse(localStorage.getItem("savevalue"))
-    if(newtodo !== null){
-      todo = "";
-    }
+ 
     scoreinitial.textContent = "";
     highscoreValue.textContent = "";
     window.localStorage.clear()
